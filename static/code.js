@@ -1,9 +1,12 @@
+const vscode = acquireVsCodeApi();
+
 var DirectLineEmulator={
     emptyActivity:{
         "activities": [],
         "watermark": "0"
     },
     userActivity:function(activity){
+        vscode.postMessage(activity);
     },
     getActivity:function(activity){
         if (lastMessageID!=messageID){

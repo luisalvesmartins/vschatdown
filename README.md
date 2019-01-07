@@ -1,5 +1,5 @@
 # VS Code ChatDown
-Visual Studio Code Extension for ChatDown
+Visual Studio Code Extension for Bot ChatDown
 
 ## Features
 
@@ -22,8 +22,17 @@ Visual Studio Code!
 
 Only basic syntax supported now. No fancy adaptive cards yet.
 
+This works:
+```
+bot:[Herocard  
+    title=HeroCard!
+    subtitle=Hero Card, what else?
+    text=Some text describing the card, it's cool because it's cool
+    image=https://www.linkthatwillbeignored.com
+    buttons=Option 1| Option 2| Option 3]
+```
+
+
 ## Release Notes
 
-### 1.0.0
-
-Initial release
+Check the [ChangeLog](./CHANGELOG.md)

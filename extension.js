@@ -4,6 +4,7 @@ const path = require('path');
 var ChatDownPanel=null;
 var extPath="";
 var lastLength=0;
+var editor;
 
 function activate(context) {
 
@@ -22,7 +23,7 @@ function activate(context) {
 		//vscode.window.showInformationMessage('Running ChatDown');
 
         // if there is Uri it means the file was selected in the explorer.
-		var editor = vscode.window.activeTextEditor;
+		editor = vscode.window.activeTextEditor;
 		if (!editor) {
 			vscode.window.showWarningMessage('No active text editor found!');
 			return;
@@ -61,6 +62,16 @@ function activate(context) {
 
 		//ChatDownPanel.webview.html = getWebviewContent("");
 		ChatDownPanel.webview.html = getWebviewContent();
+
+		ChatDownPanel.webview.onDidReceiveMessage(
+			message => {
+				editor.edit(editBuilder => {
+					editBuilder.insert(editor.selection.active, "user:" + message.text + "\r\n");
+				  });
+			},
+			undefined,
+			context.subscriptions
+		);
 
 		var updateWebview = () => {
 			up(doc);

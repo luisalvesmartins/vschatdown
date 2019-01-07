@@ -5,9 +5,9 @@ Visual Studio Code Extension for ChatDown
 
 Basic ChatDown syntax accepted.
 
-> Tip: Check the chatdown page here: https://github.com/Microsoft/botbuilder-tools/tree/master/packages/Chatdown
+![Screenshot](images/screenshot.png)
 
-A screenshot will be here soon...
+> Tip: Check the chatdown page here: https://github.com/Microsoft/botbuilder-tools/tree/master/packages/Chatdown
 
 ## Requirements
 

@@ -1,14 +1,16 @@
 {
 	"name": "chatdown",
 	"displayName": "ChatDown",
-	"description": "",
-	"version": "0.0.1",
+	"description": "Visual Studio Code Extension for ChatDown",
+	"version": "1.0.0",
 	"engines": {
 		"vscode": "^1.30.0"
 	},
+	"publisher":"luisalvesmartins",
 	"categories": [
 		"Other"
 	],
+	"repository":"https://github.com/luisalvesmartins/vschatdown",
 	"activationEvents": [
 		"onCommand:extension.chatdown"
 	],

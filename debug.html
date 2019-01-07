@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>Offline Bot WebChat Control</title>
+    <link href="https://cdn.botframework.com/botframework-webchat/latest/botchat.css" rel="stylesheet" />
+    <script src="static/offlinebotchat.js"></script>
+    <script src="static/code.js"></script>
+    <script src="static/ChatDownSource.js"></script>
+    <script src="static/jquery-1.10.2.min.js"></script>
+
+    <style>
+      #botDivElement {
+        border: 1px solid #333;
+        float: left;
+        height: 400px;
+        position: relative;
+        width: 460px;
+        margin-right:20px;
+      }
+    </style>
+  </head>
+  <body onload="start()"">
+    <h2>Offline Bot WebChat Control</h2>
+
+    <div id="botDivElement"></div>
+    <div id="SideBar">
+      User Message:
+      <div id="lastMessage"></div>
+      Send Message:
+      <div>
+        <INPUT id="sendMessage"/>
+        <button onclick="renderContent('user=me\nbot=cafebot\n\n\nuser: book a table\nbot: Did you have a location in mind?')">Send</button>
+      </div>
+      <div id="b"></div>
+    </div>
+<script>
+pathe='static/activities.txt';
+function start(){
+  init(); 
+}</script>
+  </body>
+</html>

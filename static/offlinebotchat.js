@@ -8393,13 +8393,17 @@ var DirectLine = /** @class */ (function () {
         //HARDCODED
         return this.checkConnection(true)
             .flatMap(function (_) {
-                return Observable_1.Observable.of(DirectLineEmulator.getActivity())
+                return Observable_1.Observable.of(
+                        DirectLineEmulator.userActivity(activity)
+                    )
                 .map(function(){
-                    return DirectLineEmulator.getActivity();
-                })
-                .flatMap(function (activityGroup) { 
-                    return _this.observableFromActivityGroup(activityGroup); });
-                ;
+                    try{
+                        DirectLineEmulator.userActivity(activity);
+                    }
+                    catch(error){
+                    }
+                    return "1"; 
+                });
 
             return Observable_1.Observable.ajax({
                 method: "GET",

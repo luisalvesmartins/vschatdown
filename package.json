@@ -2,7 +2,7 @@
 	"name": "chatdown",
 	"displayName": "ChatDown",
 	"description": "Visual Studio Code Extension for ChatDown",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"engines": {
 		"vscode": "^1.30.0"
 	},

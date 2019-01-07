@@ -7,7 +7,6 @@ var DirectLineEmulator={
     },
     getActivity:function(activity){
         if (lastMessageID!=messageID){
-            // console.log("SENT:")
             // console.log(this.emptyActivity);
             lastMessageID=messageID;
         }
@@ -55,7 +54,7 @@ window.addEventListener('message', event => {
     if (started){
         const message = event.data; // The JSON data our extension sent
         if (message!=lastText){
-            console.log("NEW:" + message)
+            //console.log("NEW:" + message)
             renderContent(message);
             lastText=message;
             // send(message.text);
@@ -77,6 +76,9 @@ function renderContent(content)
     var pos=original.indexOf("Attachment=");
     while (pos>0) {
         var pos2=original.substr(pos+11).indexOf(" ");
+        var pos3=original.substr(pos+11).indexOf("]");
+        if (pos3<pos2 || pos2==-1)
+            pos2=pos3;
         var file=original.substr(pos+11,pos2);
 
         fileList.push({ file:file, content:null});
@@ -90,9 +92,22 @@ function renderContent(content)
 }
 
 function loadImage(index){
+    //console.log("LOAD FILE:" + fileList[index].file);
     $.get( fileList[index].file, function( data ) {
-        console.log(fileList[index].file)
+        //console.log(fileList[index].file)
         fileList[index].content=data;
+        index++;
+        if(index < fileList.length) {
+            loadImage(index);
+        }
+        else
+        {
+            renderContent2(BD);
+        }
+    }).fail(function(){ 
+        //console.log("ERROR LOADING");
+        //console.log(fileList[index].file)
+        fileList[index].content="";
         index++;
         if(index < fileList.length) {
             loadImage(index);
@@ -113,13 +128,14 @@ function renderContent2(content){
         if (activity.type=="ActivityTypes.Message"){
             if (activity.attachments)
             {
-                //try{
+                //console.log(activity.attachments[0]);
+                try{
                 if (typeof activity.attachments[0].content =="string"){
                     var card=JSON.parse(activity.attachments[0].content);
                     delete card["$schema"];
                     activity.attachments[0].content=card;
                 }
-                //}catch(e){}
+                }catch(e){}
             }
             activity.type="message";
         }
@@ -128,6 +144,5 @@ function renderContent2(content){
     //document.all("displayActivities").innerHTML=sOutput;
     messageID++;
     $(".wc-message-group-content").html("");
-    console.log("RENDERING");
     DirectLineEmulator.emptyActivity={activities:historyAct};
 }

@@ -647,34 +647,40 @@ async function addAttachment(activity, arg) {
             contentType = cardContentTypes[contentType];
     }
     else {
-        contentType = mime.lookup(contentUrl) || cardContentTypes[path.extname(contentUrl)];
-        if (!contentType && contentUrl && contentUrl.indexOf('http') == 0) {
-            let options = { method: 'HEAD', uri: contentUrl };
-            let response = request(options);
-            contentType = response['content-type'].split(';')[0];
-        }
+        // console.log("CONTENTTYPE:" + contentType);
+        // console.log("contentUrl:" + contentUrl);
+        contentType=contentUrl.substring(contentUrl.lastIndexOf(".")+1);
+        // console.log("contentType:" + contentType);
+        // console.log("path.extname:" + path.extname(contentUrl));
+        // contentType = mime.lookup(contentUrl) || cardContentTypes[path.extname(contentUrl)];
+        // if (!contentType && contentUrl && contentUrl.indexOf('http') == 0) {
+        //     let options = { method: 'HEAD', uri: contentUrl };
+        //     let response = request(options);
+        //     contentType = response['content-type'].split(';')[0];
+        // }
     }
 
     //TODO:
     // const charset = mime.charset(contentType);
     //TODO:
-    charset="UTF-8";
+    var charset="UTF-8";
     // if not a url
-    if (contentUrl.indexOf('http') != 0) {
+    //if (contentUrl.indexOf('http') != 0) {
         // read the file
         //TODO
         //let content = readAttachmentFile(contentUrl, contentType);
-        content=fileListContent(contentUrl);
-        // if it is not a card
+        var content=fileListContent(contentUrl);
+    // if it is not a card
         if (!isCard(contentType) && charset !== 'UTF-8') {
             // send as base64
             contentUrl = `data:${contentType};base64,${new Buffer(content).toString('base64')}`;
             content = undefined;
         } else {
-            contentUrl = undefined;
+            content=undefined;
+            //contentUrl = undefined;
         }
         return (activity.attachments || (activity.attachments = [])).push(new Attachment({ contentType, contentUrl, content }));
-    }
+    //}
     // send as contentUrl
     return (activity.attachments || (activity.attachments = [])).push(new Attachment({ contentType, contentUrl }));
 }

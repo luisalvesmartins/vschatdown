@@ -98,7 +98,7 @@ function up(doc){
 
 function getWebviewContent(){
 	const scriptUri = vscode.Uri.file(
-		path.join(extPath, 'static', 'offlinebotchat.js'))
+		path.join(extPath, 'static', 'offlinebotchatv4.js'))
 		.with({ scheme: 'vscode-resource' });
 	const scriptUriCD = vscode.Uri.file(
 			path.join(extPath, 'static', 'ChatDownSource.js'))
@@ -115,7 +115,6 @@ function getWebviewContent(){
 <head>
     <meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link href="https://cdn.botframework.com/botframework-webchat/latest/botchat.css" rel="stylesheet" />
 	<script src="${scriptUriCode}"></script>
 	<script src="${scriptUri}"></script>
 	<script src="${scriptUriCD}"></script>

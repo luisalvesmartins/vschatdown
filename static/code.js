@@ -22,11 +22,19 @@ var started=false;
 function init(){
     const user = { id: 'user', name: 'User' };
     const bot = { id: 'botid', name: 'bot' };
-	BotChat.App({
-		bot: bot,
-		user: user,
-		botConnection: new BotChat.DirectLine({}),
-		}, document.getElementById('botDivElement'));
+    const styleOptions = {
+        bubbleBackground: 'rgba(0, 0, 255, .1)',
+        bubbleFromUserBackground: 'rgba(0, 255, 0, .1)',
+        botAvatarInitials: 'Bot',
+        userAvatarInitials: 'User',
+        showSpokenText: true,
+    };
+    window.WebChat.renderWebChat({
+        directLine: window.WebChat.createDirectLine({ token: '' }),
+        bot: bot,
+        user: user,
+        styleOptions
+    }, document.getElementById('botDivElement'));        
     started=true;
     send("Welcome to the BotDown VS extension");
 }

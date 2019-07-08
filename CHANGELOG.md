@@ -1,6 +1,9 @@
 # Change Log
 All notable changes to the extension will be documented in this file.
 
+## 1.0.3
+- Updated the offlinechat to v4
+
 ## 1.0.2
 - Added user input update to main document
 
